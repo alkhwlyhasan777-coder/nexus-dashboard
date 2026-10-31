@@ -8,7 +8,7 @@ import Dropdown from "./Dropdown";
 import Flag from "../../layout/navbar/Flag";
 import SearchBox from "../../layout/navbar/SearchBox";
 // import { DesktopNav, MobileNav, SubLink } from "../../layout/navbar/NavMenu";
-import { NAV_BREAKPOINTS, NAV_LINKS, NAV_TEXT, USER_MENU } from "./navbar.config";
+import { NAV_BREAKPOINTS, NAV_TEXT, USER_MENU } from "./navbar.config";
 export default function Navbar({
   lang = "en", onToggleLang,
   collapsed = false, onCollapse, onOpenSidebar,
