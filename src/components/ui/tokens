@@ -1,4 +1,4 @@
-// /*
+ // /*
 //   Design tokens for the whole app shell (sidebar, navbar, pages).
 //   Change the look here and every component follows.
  
@@ -118,6 +118,7 @@
 
 /* Pick the accent in ONE place: PALETTES.blue or PALETTES.orange.
    (Classes are written out in full so Tailwind can find them.) */
+
 const PALETTES = {
   blue: {
     solid: "bg-blue-500 text-white hover:bg-blue-600",
@@ -143,7 +144,7 @@ export const canvas = "bg-neutral-100 dark:bg-neutral-950";
 export const hairline = "border-neutral-200 dark:border-neutral-800"; // colors only, add `border` yourself
 export const card = `rounded-2xl border bg-white dark:bg-neutral-900 ${hairline}`;
 export const popover = `rounded-xl border bg-white p-1.5 shadow-lg dark:bg-neutral-900 ${hairline}`;
-
+export const textarea  = `rounded-xl`
 /* Text */
 export const text = {
   base: "text-neutral-900 dark:text-neutral-100",

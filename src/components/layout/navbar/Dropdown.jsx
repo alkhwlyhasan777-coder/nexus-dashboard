@@ -2,13 +2,6 @@
 import { useId, useRef, useState } from "react";
 import useClickOutside from "../../../hooks/useClickOutside";
 import { popover } from "./styles";
- 
-/*
-  Disclosure dropdown. `trigger` is a render prop: ({ open, toggle, props }) => <button ... />
-  Spread `props` onto the button (aria-expanded / aria-controls).
-  `children` can be a node or (close) => node.
-  Closes on outside click and on Escape.
-*/
 export default function Dropdown({ trigger, children, align = "start", className = "" }) {
   const [open, setOpen] = useState(false);
   const ref = useRef(null);

@@ -9,24 +9,6 @@ import Flag from "../../layout/navbar/Flag";
 import SearchBox from "../../layout/navbar/SearchBox";
 // import { DesktopNav, MobileNav, SubLink } from "../../layout/navbar/NavMenu";
 import { NAV_BREAKPOINTS, NAV_LINKS, NAV_TEXT, USER_MENU } from "./navbar.config";
- 
-/*
-  Presentational navbar: it owns no app state, everything comes in as props.
- 
-  lang / onToggleLang         "en" | "ar" and the switch handler
-  collapsed / onCollapse      sidebar state (desktop) and its toggle
-  onOpenSidebar               opens the sidebar drawer (mobile)
-  user                        { name, role, avatar? }
-  links / userMenu / text     data (defaults live in navbar.config.js)
-  breakpoints                 widths at which parts collapse (see NAV_BREAKPOINTS)
-  hasUnread / onNotifications bell with red dot
-  onCreate / onSearch         button and search callbacks
- 
-  It is a white card on the same canvas as the sidebar. Its layout adapts to its OWN
-  usable width (screen minus sidebar), so it reacts when the sidebar expands, collapses
-  or turns into a drawer. The two sidebar buttons follow the sidebar's breakpoint
-  (md = 768px of screen), because that is when the sidebar becomes a drawer.
-*/
 export default function Navbar({
   lang = "en", onToggleLang,
   collapsed = false, onCollapse, onOpenSidebar,
@@ -47,7 +29,6 @@ export default function Navbar({
     <div className={`sticky top-0 z-10 px-3 py-3 md:px-6 ${canvas}`}>
       <header ref={ref} className={`${card} px-3 md:px-4`}>
         <div className="flex h-14 items-center gap-2">
-          {/* Start: sidebar controls + links */}
           <IconButton label={t.openSidebar} onClick={onOpenSidebar} className="md:hidden">
             <Icon name="menu" size={18} />
           </IconButton>
@@ -58,9 +39,6 @@ export default function Navbar({
               className={`transition-transform duration-200 ${collapsed ? "rotate-180 rtl:rotate-0" : "rtl:rotate-180"}`}
             />
           </IconButton>
-          {/* {showLinks ? <DesktopNav links={links} t={t} /> : <MobileNav links={links} t={t} />} */}
- 
-          {/* End: search, create, language, notifications, user */}
           <div className="ms-auto flex items-center gap-2">
             {showSearch ? (
               <>
@@ -122,20 +100,11 @@ export default function Navbar({
                   </button>
                 )}
               >
-                {/* {(close) => (
-                  <ul className="w-48">
-                    {userMenu.map((item) => (
-                      <li key={item.id}><SubLink to={item.to} label={t[item.id]} onClick={close} /></li>
-                    ))}
-                  </ul>
-                )} */}
               </Dropdown>
             )}
           </div>
         </div>
- 
-        {/* Search row, only when the search box has collapsed into an icon */}
-        {searchOpen && !showSearch && (
+            {searchOpen && !showSearch && (
           <div className={`border-t py-3 ${hairline}`}>
             <SearchBox label={t.search} placeholder={t.searchPlaceholder} onSearch={onSearch} autoFocus />
           </div>
