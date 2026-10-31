@@ -8,6 +8,7 @@ import { button, focusRing, muted } from "../../components/ui/tokens";
 import { STATUS_TONE } from "./leads.data";
 // import { useMemo } from "react";
 import { Link } from "react-router-dom";
+import { Created, Ltr } from "./LeadTableParts";
 // import Badge from "../../components/ui/Badge";
 // import Highlight from "../../components/ui/Highlight";
 // import Icon from "../../components/ui/Icon";
@@ -15,18 +16,6 @@ import { Link } from "react-router-dom";
 // import PersonAvatar from "../../components/ui/PersonAvatar";
 // import { button, focusRing, muted } from "../../components/ui/tokens";
 // import { STATUS_TONE } from "./leads.data";
-
-const Ltr = ({ children }) => <bdi dir="ltr">{children}</bdi>;
-
-function Created({ iso, fmt }) {
-  const exact = fmt.date.format(new Date(iso));
-  return (
-    <time dateTime={iso} title={exact} className="block leading-tight">
-      <span className="font-medium">{fmt.fromNow(iso)}</span>
-      <span className={`block text-xs ${muted}`}>{exact}</span>
-    </time>
-  );
-}
 
 /* Builds the DataTable columns and the card layout for leads */
 export default function useLeadTable({ t, fmt, query, search, onEdit, onDelete }) {
