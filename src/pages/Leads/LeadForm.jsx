@@ -96,7 +96,7 @@ export default function LeadForm({ t, initial, takenEmails, onSubmit, onCancel }
           </select>
         </Field>
         <Field id={`${uid}-value`} label={t.valueField} error={shown("value")}>
-          <input {...bind("value")} type="number" min="0" step="1" inputMode="decimal" placeholder="0" className={field} />
+          <input {...bind("value")} type="number" min="0" step="0.01" inputMode="decimal" placeholder="0" className={field} />
         </Field>
         <Field id={`${uid}-notes`} label={t.notes} className="sm:col-span-2">
           <textarea {...bind("notes")} rows={3} placeholder={t.notesPlaceholder} className={textarea} />
