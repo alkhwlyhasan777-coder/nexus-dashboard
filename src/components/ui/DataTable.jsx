@@ -177,7 +177,14 @@ export default function DataTable({
 
   const divider = "divide-y divide-neutral-200 dark:divide-neutral-800";
 
-  // Prevent Edit / Delete buttons from opening row details
+  // Keep links and action controls independent from the clickable row/card.
+  const handleRowClick = (e, row) => {
+    if (e.target.closest?.("a, button, input, select, textarea, [role='button']")) {
+      return;
+    }
+    onRowClick(row);
+  };
+
   const stopRowClick = (e) => {
     e.stopPropagation();
   };
@@ -195,7 +202,7 @@ export default function DataTable({
   const rowClickProps = (row) =>
     onRowClick
       ? {
-          onClick: () => onRowClick(row),
+          onClick: (e) => handleRowClick(e, row),
           onKeyDown: (e) => handleRowKeyDown(e, row),
           tabIndex: 0,
           role: "button",
