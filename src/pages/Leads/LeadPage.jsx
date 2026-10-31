@@ -136,7 +136,7 @@ export default function LeadPage() {
         <div className={`mt-5 border-t pt-4 ${hairline}`}>
           <p id="lead-pipeline" className={`mb-2 text-xs font-medium ${muted}`}>{t.changeStatus}</p>
           <div role="group" aria-labelledby="lead-pipeline" className="-mx-1 flex gap-1.5 overflow-x-auto px-1 py-1">
-            {STATUSES.map((s) => (
+            {(STATUSES ?? []).map((s) => (
               <button
                 key={s}
                 type="button"

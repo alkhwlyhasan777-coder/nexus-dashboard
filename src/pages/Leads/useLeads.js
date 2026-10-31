@@ -7,31 +7,85 @@ import { buildSeed } from "./leads.data";
 */
 const KEY = "leads:v1";
 
+// const load = () => {
+//   try {
+//     const raw = localStorage.getItem(KEY);
+//     if (raw) return JSON.parse(raw);
+//   } catch { /* ignore corrupt or unavailable storage */ }
+//   return buildSeed();
+// };
 const load = () => {
   try {
     const raw = localStorage.getItem(KEY);
-    if (raw) return JSON.parse(raw);
-  } catch { /* ignore corrupt or unavailable storage */ }
+
+    if (raw) {
+      const parsed = JSON.parse(raw);
+
+      if (Array.isArray(parsed)) {
+        return parsed;
+      }
+    }
+  } catch (error) {
+    console.error("Failed to load leads:", error);
+  }
+
   return buildSeed();
 };
-
 function reducer(state, action) {
+  const safeState = Array.isArray(state) ? state : [];
+
   switch (action.type) {
-    case "add": return [action.lead, ...state];
+    case "add":
+      return [action.lead, ...safeState];
+
     case "update":
-      return state.map((l) => {
+      return safeState.map((l) => {
         if (l.id !== action.lead.id) return l;
+
         const activity = [...(l.activity ?? [])];
+
         if (l.status !== action.lead.status) {
-          activity.push({ type: "status", from: l.status, to: action.lead.status, at: new Date().toISOString() });
+          activity.push({
+            type: "status",
+            from: l.status,
+            to: action.lead.status,
+            at: new Date().toISOString(),
+          });
         }
+
         return { ...action.lead, activity };
       });
-    case "remove": return state.filter((l) => l.id !== action.id);
-    case "restore": { const next = [...state]; next.splice(action.index, 0, action.lead); return next; }
-    default: return state;
+
+    case "remove":
+      return safeState.filter((l) => l.id !== action.id);
+
+    case "restore": {
+      const next = [...safeState];
+      next.splice(action.index, 0, action.lead);
+      return next;
+    }
+
+    default:
+      return safeState;
   }
 }
+// function reducer(state, action) {
+//   switch (action.type) {
+//     case "add": return [action.lead, ...state];
+//     case "update":
+//       return state.map((l) => {
+//         if (l.id !== action.lead.id) return l;
+//         const activity = [...(l.activity ?? [])];
+//         if (l.status !== action.lead.status) {
+//           activity.push({ type: "status", from: l.status, to: action.lead.status, at: new Date().toISOString() });
+//         }
+//         return { ...action.lead, activity };
+//       });
+//     case "remove": return state.filter((l) => l.id !== action.id);
+//     case "restore": { const next = [...state]; next.splice(action.index, 0, action.lead); return next; }
+//     default: return state;
+//   }
+// }
 
 const newId = () => globalThis.crypto?.randomUUID?.() ?? `l-${Date.now().toString(36)}${Math.random().toString(36).slice(2, 7)}`;
 
