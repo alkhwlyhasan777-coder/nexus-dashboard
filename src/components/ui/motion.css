@@ -1,0 +1,101 @@
+/* Shared entrance animations. Usage: className="anim-fade-up" style={{ "--delay": "80ms" }} */
+@keyframes anim-fade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes anim-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes anim-pop {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes anim-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.anim-fade-up {
+  animation: anim-fade-up 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: var(--delay, 0ms);
+}
+
+.anim-row {
+  animation: anim-fade-up 0.35s ease-out both;
+  animation-delay: var(--delay, 0ms);
+}
+
+.anim-pop {
+  animation: anim-pop 0.22s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.anim-slide-up {
+  animation: anim-slide-up 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+dialog.anim-pop::backdrop {
+  animation: anim-fade 0.2s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .anim-fade-up,
+  .anim-row,
+  .anim-pop,
+  .anim-slide-up,
+  dialog.anim-pop::backdrop {
+    animation: none;
+  }
+}
+
+/* Reveals a chart from its start edge (use with sparklines) */
+@keyframes anim-reveal {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+.anim-reveal {
+  animation: anim-reveal 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: var(--delay, 0ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .anim-reveal {
+    animation: none;
+  }
+}
