@@ -6,6 +6,15 @@ import IconButton from "../../components/layout/navbar/IconButton";
 import PersonAvatar from "../../components/ui/PersonAvatar";
 import { button, focusRing, muted } from "../../components/ui/tokens";
 import { STATUS_TONE } from "./leads.data";
+// import { useMemo } from "react";
+import { Link } from "react-router-dom";
+// import Badge from "../../components/ui/Badge";
+// import Highlight from "../../components/ui/Highlight";
+// import Icon from "../../components/ui/Icon";
+// import IconButton from "../../components/ui/IconButton";
+// import PersonAvatar from "../../components/ui/PersonAvatar";
+// import { button, focusRing, muted } from "../../components/ui/tokens";
+// import { STATUS_TONE } from "./leads.data";
 
 const Ltr = ({ children }) => <bdi dir="ltr">{children}</bdi>;
 
@@ -20,22 +29,22 @@ function Created({ iso, fmt }) {
 }
 
 /* Builds the DataTable columns and the card layout for leads */
-export default function useLeadTable({ t, fmt, query, onOpen, onEdit, onDelete }) {
+export default function useLeadTable({ t, fmt, query, search, onEdit, onDelete }) {
   return useMemo(() => {
-    // The name is a real button, so keyboard and screen-reader users can open the details too
+    // The name is a real link to the details page; `state.from` lets the page's Back link restore this view
     const identity = (l, className = "max-w-[280px]") => (
-      <button
-        type="button"
-        onClick={() => onOpen(l)}
+      <Link
+        to={`/leads/${l.id}`}
+        state={{ from: search }}
         aria-label={t.viewNamed(l.name)}
-        className={`flex min-w-0 items-center gap-3 rounded-lg text-start ${focusRing} ${className}`}
+        className={`flex min-w-0 items-center gap-3 rounded-lg text-start no-underline ${focusRing} ${className}`}
       >
         <PersonAvatar name={l.name} />
         <span className="min-w-0">
           <span className="block truncate font-medium"><Highlight text={l.name} query={query} /></span>
           <span className={`block truncate text-xs ${muted}`}><Ltr><Highlight text={l.email} query={query} /></Ltr></span>
         </span>
-      </button>
+      </Link>
     );
     const status = (l) => <Badge tone={STATUS_TONE[l.status]}>{t[`s_${l.status}`]}</Badge>;
 
@@ -90,5 +99,5 @@ export default function useLeadTable({ t, fmt, query, onOpen, onEdit, onDelete }
     );
 
     return { columns, renderCard };
-  }, [t, fmt, query, onOpen, onEdit, onDelete]);
+  }, [t, fmt, query, search, onEdit, onDelete]);
 }

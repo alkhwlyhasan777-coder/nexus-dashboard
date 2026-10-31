@@ -1,5 +1,7 @@
 export const T = {
   en: {
+    backToLeads: "Back to leads", overview: "Overview", saveNotes: "Save notes", discard: "Discard changes", notesSaved: "Notes saved",
+    notFound: "This lead no longer exists", notFoundHint: "It may have been deleted. Go back to the list to continue.",
     title: "Leads", subtitle: "Track every lead from first contact to closed deal.", add: "Add lead",
     search: "Search by name or email…", searchLabel: "Search leads by name or email",
     filterStatus: "Filter by status", sourceLabel: "Source", allSources: "All sources", all: "All",
@@ -29,6 +31,8 @@ export const T = {
     restored: (n) => `${n} was restored`, statusChanged: (n, s) => `${n} moved to ${s}`, undo: "Undo", dismiss: "Dismiss",
   },
   ar: {
+    backToLeads: "العودة إلى العملاء المحتملين", overview: "نظرة عامة", saveNotes: "حفظ الملاحظات", discard: "تجاهل التغييرات", notesSaved: "تم حفظ الملاحظات",
+    notFound: "هذا العميل المحتمل لم يعد موجودًا", notFoundHint: "ربما تم حذفه. عد إلى القائمة للمتابعة.",
     title: "العملاء المحتملون", subtitle: "تابع كل عميل محتمل من أول تواصل حتى إتمام الصفقة.", add: "إضافة عميل محتمل",
     search: "ابحث بالاسم أو البريد الإلكتروني…", searchLabel: "البحث في العملاء المحتملين بالاسم أو البريد",
     filterStatus: "تصفية حسب الحالة", sourceLabel: "المصدر", allSources: "كل المصادر", all: "الكل",

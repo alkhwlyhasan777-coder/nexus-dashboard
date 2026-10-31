@@ -41,15 +41,47 @@ const ICONS = {
   table: ["M4 5h16v14H4z", "M4 10h16M4 15h16M10 5v14"],
   download: ["M12 4v11", "m7 11 5 5 5-5", "M5 20h14"],
 };
+export default function Icon({
+  name,
+  size = 16,
+  strokeWidth = 1.75,
+  className = "",
+}) {
+  const paths = ICONS[name];
 
-export default function Icon({ name, size = 16, strokeWidth = 1.75, className = "" }) {
+  if (!paths) {
+    console.warn(`Icon "${name}" does not exist in ICONS`);
+
+    return null;
+  }
+
   return (
     <svg
-      width={size} height={size} viewBox="0 0 24 24" aria-hidden="true"
-      fill="none" stroke="currentColor" strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round"
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={strokeWidth}
+      strokeLinecap="round"
+      strokeLinejoin="round"
       className={`shrink-0 ${className}`}
     >
-      {ICONS[name].map((d) => <path key={d} d={d} />)}
+      {paths.map((d) => (
+        <path key={d} d={d} />
+      ))}
     </svg>
   );
 }
+// export default function Icon({ name, size = 16, strokeWidth = 1.75, className = "" }) {
+//   return (
+//     <svg
+//       width={size} height={size} viewBox="0 0 24 24" aria-hidden="true"
+//       fill="none" stroke="currentColor" strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round"
+//       className={`shrink-0 ${className}`}
+//     >
+//       {ICONS[name].map((d) => <path key={d} d={d} />)}
+//     </svg>
+//   );
+// }
