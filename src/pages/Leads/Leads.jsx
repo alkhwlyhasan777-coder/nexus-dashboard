@@ -12,7 +12,7 @@ import { useUI } from "../../context/UIcontext";
 import { makeFormatters } from "../../lib/format";
 import LeadModals from "./LeadModals";
 import { useLeadsCtx } from "./LeadsLayout";
-import useLeadTable from "./LeadTable";
+import useLeadTable from "./leadTable";
 import { computeStats, SOURCES, STATUSES } from "./leads.data";
 import { T } from "./leads.i18n";
 
