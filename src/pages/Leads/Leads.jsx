@@ -356,8 +356,8 @@ export default function Leads() {
   const closeModal = useCallback(() => setModal(null), []);
   const openEdit = useCallback((lead) => setModal({ type: "edit", lead }), []);
   const openDelete = useCallback((lead) => setModal({ type: "delete", lead }), []);
-  const openDetails = useCallback((lead) => navigate(`/leads/${lead.id}`, { state: { from: search } }), [navigate, search]);
-
+  const openDetails = useCallback((lead) => navigate(`/${lead.id}`, { state: { from: search } }), [navigate, search]);
+console.log(openDetails)
   const stats = useMemo(() => computeStats(leads), [leads]);
 
   /* Search + source first, so the status counts always match what the other filters leave */
