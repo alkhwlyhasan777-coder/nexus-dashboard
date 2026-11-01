@@ -1,4 +1,3 @@
-/* eslint-disable react-refresh/only-export-components */
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import Sidebar, { mainOffset } from "../components/ui/Sidebar";
 import Navbar from "../components/layout/navbar/Navbar";
