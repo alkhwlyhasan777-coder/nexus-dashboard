@@ -40,7 +40,11 @@ export function CloseDate({ deal, t, fmt, today }) {
   return (
     <time dateTime={deal.expectedClose} title={exact} className={`inline-flex items-center gap-1 text-xs font-medium ${tone}`}>
       <Icon name="calendar" size={13} />
-      {fmt.inDays(days)}
+      {days < 0
+        ? t.daysOverdue(Math.abs(days))
+        : days === 0
+          ? t.dueToday
+          : t.daysLeft(days)}
       {days < 0 && <span className="sr-only"> ({t.overdueBadge})</span>}
     </time>
   );

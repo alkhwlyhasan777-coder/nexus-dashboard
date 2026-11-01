@@ -1,5 +1,8 @@
 export const T = {
   en: {
+    daysLeft: (n) => `${n} days left`,
+    daysOverdue: (n) => `${n} days overdue`,
+    dueToday: "Due today",
     title: "Deals", subtitle: "Follow every opportunity from first conversation to signed contract.", add: "New deal",
     search: "Search deals or clients…", searchLabel: "Search deals by title or client",
     viewLabel: "View", viewBoard: "Board view", viewList: "List view",
@@ -34,6 +37,9 @@ export const T = {
     syncedFromTab: "Pipeline updated from another tab", undo: "Undo", dismiss: "Dismiss",
   },
   ar: {
+    daysLeft: (n) => `متبقي ${n} يوم`,
+    daysOverdue: (n) => `متأخرة ${n} يوم`,
+    dueToday: "مستحقة اليوم",
     title: "الصفقات", subtitle: "تابع كل فرصة من أول محادثة حتى توقيع العقد.", add: "صفقة جديدة",
     search: "ابحث عن صفقة أو عميل…", searchLabel: "البحث في الصفقات بالعنوان أو العميل",
     viewLabel: "طريقة العرض", viewBoard: "عرض لوحة", viewList: "عرض قائمة",

@@ -39,7 +39,10 @@ export default function DealStats({ deals, stats, today, fmt, t, dir }) {
         y: {
           position: rtl ? "right" : "left", beginAtZero: true, border: { display: false },
           grid: { color: dark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.06)" },
-          ticks: { color: tick, callback: (v) => fmt.moneyCompact.format(v) },
+          ticks: {
+            color: tick,
+            callback: (v) => fmt.money.format(v),
+          },
         },
       },
     };
