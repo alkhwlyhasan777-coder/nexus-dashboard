@@ -90,6 +90,8 @@ export default function Pipeline() {
       })
       .sort((a, b) => {
         if (sortId === "value") return sign * (a.value - b.value);
+        if (sortId === "title") return sign * a.title.localeCompare(b.title, locale);
+        if (sortId === "stage") return sign * (STAGES.indexOf(a.stage) - STAGES.indexOf(b.stage));
         const av = isValidDate(a.expectedClose), bv = isValidDate(b.expectedClose);
         if (!av || !bv) return av === bv ? 0 : av ? -1 : 1; // no valid date: always last
         return sign * a.expectedClose.localeCompare(b.expectedClose);
