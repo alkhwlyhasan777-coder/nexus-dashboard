@@ -3,8 +3,9 @@ import { Link, useSearchParams } from "react-router-dom";
 import "../../components/ui/motion.css";
 import Icon from "../../components/layout/navbar/Icon";
 import IconButton from "../../components/layout/navbar/IconButton";
+import DataTable from "../../components/ui/DataTable";
 import { LANGS } from "../../components/ui/Sidebar";
-import { accent, button, card, field, muted } from "../../components/ui/tokens";
+import { accent, button, card, field, hairline, hoverBg, muted, text } from "../../components/ui/tokens";
 import { useUI } from "../../context/UIcontext";
 import { isValidDate } from "../../lib/dates";
 import { makeFormatters } from "../../lib/format";
@@ -15,11 +16,13 @@ import DealModals from "../Deals/DealModals";
 import { useDealsCtx } from "../Deals/DealsLayout";
 import DealsBoard from "../Deals/DealsBoard";
 import { computeStats, isOpen, isOverdue, needsAttention, pipelineByStage, STAGES } from "../Deals/deals.data";
+import useDealTable from "../Deals/dealTable.jsx";
 import PipelineSummary from "./PipelineSummary";
 import { T } from "./pipeline.i18n";
 
 const STATUSES = ["open", "won", "lost", "overdue", "attention"];
-const DEFAULT_DIR = { expectedClose: "asc", value: "desc" };
+const DEFAULT_DIR = { expectedClose: "asc", value: "desc", title: "asc", stage: "asc" };
+const SORTS = ["expectedClose", "value", "title", "stage"];
 
 const matchesStatus = (deal, status, today) => {
   switch (status) {
@@ -49,7 +52,8 @@ export default function Pipeline() {
   const query = params.get("q") ?? "";
   const owner = params.get("owner") === "none" || OWNERS.some((o) => o.id === params.get("owner")) ? params.get("owner") : "all";
   const status = STATUSES.includes(params.get("status")) ? params.get("status") : "all";
-  const sortId = params.get("sort") === "value" ? "value" : "expectedClose";
+  const view = params.get("view") === "list" ? "list" : "board";
+  const sortId = SORTS.includes(params.get("sort")) ? params.get("sort") : "expectedClose";
   const sortDir = ["asc", "desc"].includes(params.get("dir")) ? params.get("dir") : DEFAULT_DIR[sortId];
 
   const patch = useCallback((changes) => {
@@ -90,14 +94,14 @@ export default function Pipeline() {
         if (!av || !bv) return av === bv ? 0 : av ? -1 : 1; // no valid date: always last
         return sign * a.expectedClose.localeCompare(b.expectedClose);
       });
-  }, [deals, query, owner, status, sortId, sortDir, today, resolve]);
+  }, [deals, query, owner, status, sortId, sortDir, today, resolve, locale]);
 
   const byStage = useMemo(() => Object.fromEntries(STAGES.map((s) => [s, rows.filter((d) => d.stage === s)])), [rows]);
   const stats = useMemo(() => computeStats(rows, today), [rows, today]);
   const stages = useMemo(() => pipelineByStage(rows), [rows]);
   const attention = useMemo(() => deals.filter(needsAttention).length, [deals]);
 
-  const filtering = query.trim() !== "" || owner !== "all" || status !== "all";
+  const filtering = query.trim() !== "" || owner !== "all" || status !== "all";\n  const onSort = (id) => {\n    if (id === sortId) patch({ sort: id, dir: sortDir === "asc" ? "desc" : "asc" });\n    else patch({ sort: id, dir: DEFAULT_DIR[id] });\n  };
   const clearFilters = () => patch({ q: "", owner: "all", status: "all" });
 
   const handleSave = (values) => {
@@ -107,7 +111,7 @@ export default function Pipeline() {
   };
   const handleDelete = () => { destroy(modal.deal); closeModal(); };
 
-  const renderCard = (deal) => (
+  const { columns, renderCard: renderListCard } = useDealTable({ t, fmt, today, query, resolve, onEdit: openEdit, onDelete: openDelete, onMove: move });\n\n  const renderCard = (deal) => (
     <DealCard
       deal={deal} client={resolve(deal)} owner={getOwner(deal.ownerId)} showOwner showAge
       t={t} fmt={fmt} today={today} query={query} onEdit={openEdit} onDelete={openDelete} onMove={move}
