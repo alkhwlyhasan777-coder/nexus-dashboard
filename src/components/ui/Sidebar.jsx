@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> f6e103e7ae4f2e8e2a17c9709b3692d51689ed4a
 import { useEffect } from "react";
  
 /* ---------- Languages ---------- */
