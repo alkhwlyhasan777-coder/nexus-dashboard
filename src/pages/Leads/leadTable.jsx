@@ -6,17 +6,11 @@ import IconButton from "../../components/layout/navbar/IconButton";
 import PersonAvatar from "../../components/ui/PersonAvatar";
 import { button, focusRing, muted } from "../../components/ui/tokens";
 import { STATUS_TONE } from "./leads.data";
-// import { useMemo } from "react";
 import { Link } from "react-router-dom";
-// import Badge from "../../components/ui/Badge";
-// import Highlight from "../../components/ui/Highlight";
-// import Icon from "../../components/ui/Icon";
-// import IconButton from "../../components/ui/IconButton";
-// import PersonAvatar from "../../components/ui/PersonAvatar";
-// import { button, focusRing, muted } from "../../components/ui/tokens";
-// import { STATUS_TONE } from "./leads.data";
+
 
 const Ltr = ({ children }) => <bdi dir="ltr">{children}</bdi>;
+
 
 function Created({ iso, fmt }) {
   const exact = fmt.date.format(new Date(iso));
@@ -28,10 +22,8 @@ function Created({ iso, fmt }) {
   );
 }
 
-/* Builds the DataTable columns and the card layout for leads */
 export default function useLeadTable({ t, fmt, query, search, onEdit, onDelete }) {
   return useMemo(() => {
-    // The name is a real link to the details page; `state.from` lets the page's Back link restore this view
     const identity = (l, className = "max-w-[280px]") => (
       <Link
         to={`/leads/${l.id}`}

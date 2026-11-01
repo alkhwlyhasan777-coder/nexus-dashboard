@@ -1,4 +1,3 @@
-/* eslint-disable react-refresh/only-export-components */
 import { useMemo } from "react";
 import Highlight from "../../components/ui/Highlight";
 import Icon from "../../components/layout/navbar/Icon";

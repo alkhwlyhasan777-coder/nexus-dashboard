@@ -7,6 +7,9 @@ import { defineConfig, globalIgnores } from 'eslint/config'
 export default defineConfig([
   globalIgnores(['dist']),
   {
+    rules: {
+      "react-refresh/only-export-components": "off",
+    },
     files: ['**/*.{js,jsx}'],
     extends: [
       js.configs.recommended,
