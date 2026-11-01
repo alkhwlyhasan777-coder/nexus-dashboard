@@ -2,22 +2,24 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import { FOOTER_MENU, MENU } from "./components/ui/Sidebar";
 import AppLayout from "./layouts/AppLayout";
 import Customers from "./pages/Customers/Customers";
-import CustomerDetails from "./pages/Customers/CustomerDetails";
 import Deals from "./pages/Deals/Deals";
+import DealsLayout from "./pages/Deals/DealsLayout";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import Placeholder from "./pages/Dashboard/Placeholder";
 import LeadPage from "./pages/Leads/LeadPage";
 import Leads from "./pages/Leads/Leads";
+import Pipeline from "./pages/Pipeline/Pipeline";
 import LeadsLayout from "./pages/Leads/LeadsLayout";
 
 /* Real pages go here. Any menu id not listed falls back to <Placeholder />. */
-const PAGES = { customers: Customers, deals: Deals };
+const PAGES = { customers: Customers };
 
 // Routes are generated from the same menu data the sidebar uses,
-// so adding a menu item automatically adds its route. (Leads has nested routes, so it is declared below.)
+// so adding a menu item automatically adds its route. (Leads, Deals and Pipeline share data through a layout
+// route, so they are declared below.)
 const ids = [...MENU.flatMap((g) => g.items), ...FOOTER_MENU]
   .map((i) => i.id)
-  .filter((id) => id !== "dashboard" && id !== "leads")
+  .filter((id) => !["dashboard", "leads", "deals", "pipeline"].includes(id))
   .concat("upgrade", "pages");
 
 export default function App() {
@@ -26,11 +28,15 @@ export default function App() {
       <Route element={<AppLayout />}>
         <Route index element={<Dashboard />} />
 
-        <Route path="customers/:customerId" element={<CustomerDetails />} />
-
         <Route path="leads" element={<LeadsLayout />}>
           <Route index element={<Leads />} />
           <Route path=":leadId" element={<LeadPage />} />
+        </Route>
+
+        {/* Deals and Pipeline use ONE shared store, so a change on one page is on the other */}
+        <Route element={<DealsLayout />}>
+          <Route path="deals" element={<Deals />} />
+          <Route path="pipeline" element={<Pipeline />} />
         </Route>
 
         {ids.map((id) => {
@@ -57,20 +63,33 @@ export default function App() {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 // import { Navigate, Route, Routes } from "react-router-dom";
 // import { FOOTER_MENU, MENU } from "./components/ui/Sidebar";
 // import AppLayout from "./layouts/AppLayout";
 // import Customers from "./pages/Customers/Customers";
+// import CustomerDetails from "./pages/Customers/CustomerDetails";
+// import Deals from "./pages/Deals/Deals";
 // import Dashboard from "./pages/Dashboard/Dashboard";
 // import Placeholder from "./pages/Dashboard/Placeholder";
-
-
 // import LeadPage from "./pages/Leads/LeadPage";
 // import Leads from "./pages/Leads/Leads";
 // import LeadsLayout from "./pages/Leads/LeadsLayout";
 
 // /* Real pages go here. Any menu id not listed falls back to <Placeholder />. */
-// const PAGES = { customers: Customers };
+// const PAGES = { customers: Customers, deals: Deals };
 
 // // Routes are generated from the same menu data the sidebar uses,
 // // so adding a menu item automatically adds its route. (Leads has nested routes, so it is declared below.)
@@ -84,6 +103,8 @@ export default function App() {
 //     <Routes>
 //       <Route element={<AppLayout />}>
 //         <Route index element={<Dashboard />} />
+
+//         <Route path="customers/:customerId" element={<CustomerDetails />} />
 
 //         <Route path="leads" element={<LeadsLayout />}>
 //           <Route index element={<Leads />} />
