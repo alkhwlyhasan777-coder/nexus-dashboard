@@ -17,6 +17,7 @@
 // import useCustomers from "./useCustomers";
 
 import { useCallback, useEffect, useMemo, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import "../../components/ui/motion.css";
 import DataTable from "../../components/ui/DataTable";
 import Icon from "../../components/layout/navbar/Icon";
@@ -40,6 +41,8 @@ const DEFAULT_DIR = { name: "asc", status: "asc", country: "asc" }; // other col
 
 export default function Customers() {
   const { lang } = useUI();
+  const navigate = useNavigate();
+  const location = useLocation();
   const { locale, dir } = LANGS[lang];
   const t = T[lang];
   const fmt = useMemo(() => makeFormatters(locale), [locale]);
@@ -62,6 +65,15 @@ export default function Customers() {
   const dismissToast = useCallback(() => setToast(null), []);
   const notify = useCallback((message, extra = {}) => setToast({ id: Date.now(), message, ...extra }), []);
   const openEdit = useCallback((customer) => setModal({ type: "edit", customer }), []);
+  const openView = useCallback((customer) => navigate(`/customers/${customer.id}`), [navigate]);
+
+  useEffect(() => {
+    const customerId = location.state?.editCustomerId;
+    if (!customerId) return;
+    const customer = customers.find((item) => item.id === customerId);
+    if (customer) openEdit(customer);
+    navigate(location.pathname, { replace: true, state: null });
+  }, [location.pathname, location.state, customers, navigate, openEdit]);
   const openDelete = useCallback((customer) => setModal({ type: "delete", customer }), []);
 
   const stats = useMemo(() => computeStats(customers), [customers]);
@@ -129,7 +141,7 @@ export default function Customers() {
     return new Set(customers.filter((c) => c.id !== editingId).map((c) => c.email.toLowerCase()));
   }, [customers, modal]);
 
-  const { columns, renderCard } = useCustomerTable({ t, fmt, query, maxSpent, onEdit: openEdit, onDelete: openDelete });
+  const { columns, renderCard } = useCustomerTable({ t, fmt, query, maxSpent, onView: openView, onEdit: openEdit, onDelete: openDelete });
 
   /* Download what the table is currently showing (all pages of the filtered, sorted list) */
   const exportCsv = () => {
