@@ -4,6 +4,7 @@ import { FOOTER_MENU, MENU } from "./components/ui/Sidebar";
 import AppLayout from "./layouts/AppLayout";
 import DealsLayout from "./pages/Deals/DealsLayout";
 import LeadsLayout from "./pages/Leads/LeadsLayout";
+import { useUI } from "./context/UIcontext";
 
 const Customers = lazy(() => import("./pages/Customers/Customers"));
 const Deals = lazy(() => import("./pages/Deals/Deals"));
@@ -24,6 +25,9 @@ const ids = [...MENU.flatMap((g) => g.items), ...FOOTER_MENU]
   .concat("upgrade", "pages");
 
 function PageFallback() {
+  const { lang } = useUI();
+  const label = lang === "ar" ? "جارٍ تحميل الصفحة..." : "Loading page…";
+
   return (
     <div
       className="grid min-h-56 place-items-center rounded-2xl border border-neutral-200 bg-white text-sm text-neutral-500 dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-400"
@@ -32,7 +36,7 @@ function PageFallback() {
     >
       <span className="flex items-center gap-2">
         <span className="size-4 animate-spin rounded-full border-2 border-current border-e-transparent motion-reduce:animate-none" aria-hidden="true" />
-        Loading page…
+        {label}
       </span>
     </div>
   );
