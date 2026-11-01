@@ -58,7 +58,7 @@ export default function CustomerDetails() {
   const initials = customer.name.split(" ").filter(Boolean).slice(0, 2).map((part) => part[0]).join("").toUpperCase();
   const average = customer.orders > 0 ? customer.spent / customer.orders : 0;
   const joinedDate = fmt.date.format(new Date(customer.joined));
-  const phoneHref = customer.phone ? `tel:${customer.phone.replace(/[^+\\d]/g, "")}` : undefined;
+  const phoneHref = customer.phone ? `tel:${customer.phone.replace(/[^+\d]/g, "")}` : undefined;
 
   return (
     <div className="space-y-6">
