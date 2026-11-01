@@ -2,6 +2,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import { FOOTER_MENU, MENU } from "./components/ui/Sidebar";
 import AppLayout from "./layouts/AppLayout";
 import Customers from "./pages/Customers/Customers";
+import CustomerDetails from "./pages/Customers/CustomerDetails";
 import Deals from "./pages/Deals/Deals";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import Placeholder from "./pages/Dashboard/Placeholder";
@@ -24,6 +25,8 @@ export default function App() {
     <Routes>
       <Route element={<AppLayout />}>
         <Route index element={<Dashboard />} />
+
+        <Route path="customers/:customerId" element={<CustomerDetails />} />
 
         <Route path="leads" element={<LeadsLayout />}>
           <Route index element={<Leads />} />
