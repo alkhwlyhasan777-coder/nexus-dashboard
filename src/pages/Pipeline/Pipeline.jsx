@@ -205,7 +205,7 @@ export default function Pipeline() {
                   <Icon name={sortDir === "asc" ? "arrowUp" : "arrowDown"} size={16} />
                 </IconButton>
                 <div role="group" aria-label={t.viewLabel} className={`inline-flex shrink-0 rounded-lg border p-0.5 ${hairline}`}>
-                  {[[ "board", "board", t.viewBoard ], [ "list", "list", t.viewList ]].map(([id, icon, label]) => (
+                  {[[ "list", "table", t.viewList ], [ "board", "board", t.viewBoard ]].map(([id, icon, label]) => (
                     <button key={id} type="button" aria-pressed={view === id} aria-label={label} title={label}
                       onClick={() => patch({ view: id })}
                       className={`grid size-8 place-items-center rounded-md transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 ${accent.ring} ${view === id ? accent.soft : `${text.body} ${hoverBg}`}`}>
