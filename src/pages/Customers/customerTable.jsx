@@ -59,7 +59,7 @@ function Joined({ iso, fmt }) {
 }
 
 /* Builds the DataTable column list and the card layout for customers */
-export default function useCustomerTable({ t, fmt, query, maxSpent, onEdit, onDelete }) {
+export default function useCustomerTable({ t, fmt, query, maxSpent, onView, onEdit, onDelete }) {
   return useMemo(() => {
     const identity = (c, className = "max-w-[280px]") => (
       <div className={`flex min-w-0 items-center gap-3 ${className}`}>
@@ -87,6 +87,7 @@ export default function useCustomerTable({ t, fmt, query, maxSpent, onEdit, onDe
         id: "actions", header: t.actions, hideHeader: true, align: "end",
         cell: (c) => (
           <div className="flex justify-end gap-1">
+            <IconButton label={t.viewNamed(c.name)} onClick={() => onView(c)}><Icon name="customers" size={16} /></IconButton>
             <IconButton label={t.editNamed(c.name)} onClick={() => onEdit(c)}><Icon name="edit" size={16} /></IconButton>
             <IconButton label={t.deleteNamed(c.name)} onClick={() => onDelete(c)} className="hover:text-red-600 dark:hover:text-red-400">
               <Icon name="trash" size={16} />
@@ -118,6 +119,9 @@ export default function useCustomerTable({ t, fmt, query, maxSpent, onEdit, onDe
           ))}
         </dl>
         <div className="mt-4 flex gap-2">
+          <button type="button" onClick={() => onView(c)} aria-label={t.viewNamed(c.name)} className={`${button.base} ${button.secondary} flex-1`}>
+            <Icon name="customers" size={15} />{t.view}
+          </button>
           <button type="button" onClick={() => onEdit(c)} aria-label={t.editNamed(c.name)} className={`${button.base} ${button.secondary} flex-1`}>
             <Icon name="edit" size={15} />{t.edit}
           </button>
@@ -129,7 +133,7 @@ export default function useCustomerTable({ t, fmt, query, maxSpent, onEdit, onDe
     );
 
     return { columns, renderCard };
-  }, [t, fmt, query, maxSpent, onEdit, onDelete]);
+  }, [t, fmt, query, maxSpent, onView, onEdit, onDelete]);
 }
 // /* eslint-disable react-refresh/only-export-components */
 // import { useMemo } from "react";
