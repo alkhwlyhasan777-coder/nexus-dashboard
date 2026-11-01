@@ -101,6 +101,7 @@ const ICONS = {
   board: ["M4 5h4v14H4z", "M10 5h4v9h-4z", "M16 5h4v12h-4z"],
   list: ["M8 6h12M8 12h12M8 18h12", "M4 6h.01M4 12h.01M4 18h.01"],
   calendar: ["M5 6h14a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1Z", "M4 10h16M8 4v4M16 4v4"],
+  activity: ["M3 12h4l3-8 4 16 3-8h4"],
 };
 
 export default function Icon({ name, size = 16, strokeWidth = 1.75, className = "" }) {
