@@ -7,34 +7,9 @@ import PersonAvatar from "../../components/ui/PersonAvatar";
 import { button, focusRing, muted } from "../../components/ui/tokens";
 import { STATUS_TONE } from "./leads.data";
 import { Link } from "react-router-dom";
-<<<<<<< HEAD
-
-
-const Ltr = ({ children }) => <bdi dir="ltr">{children}</bdi>;
-
-
-function Created({ iso, fmt }) {
-  const exact = fmt.date.format(new Date(iso));
-  return (
-    <time dateTime={iso} title={exact} className="block leading-tight">
-      <span className="font-medium">{fmt.fromNow(iso)}</span>
-      <span className={`block text-xs ${muted}`}>{exact}</span>
-    </time>
-  );
-}
-
-=======
 import { Created, Ltr } from "./LeadTableParts";
-// import Badge from "../../components/ui/Badge";
-// import Highlight from "../../components/ui/Highlight";
-// import Icon from "../../components/ui/Icon";
-// import IconButton from "../../components/ui/IconButton";
-// import PersonAvatar from "../../components/ui/PersonAvatar";
-// import { button, focusRing, muted } from "../../components/ui/tokens";
-// import { STATUS_TONE } from "./leads.data";
 
 /* Builds the DataTable columns and the card layout for leads */
->>>>>>> f6e103e7ae4f2e8e2a17c9709b3692d51689ed4a
 export default function useLeadTable({ t, fmt, query, search, onEdit, onDelete }) {
   return useMemo(() => {
     const identity = (l, className = "max-w-[280px]") => (
