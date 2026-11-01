@@ -103,7 +103,11 @@ export default function Pipeline() {
   const stages = useMemo(() => pipelineByStage(rows), [rows]);
   const attention = useMemo(() => deals.filter(needsAttention).length, [deals]);
 
-  const filtering = query.trim() !== "" || owner !== "all" || status !== "all";\n  const onSort = (id) => {\n    if (id === sortId) patch({ sort: id, dir: sortDir === "asc" ? "desc" : "asc" });\n    else patch({ sort: id, dir: DEFAULT_DIR[id] });\n  };
+  const filtering = query.trim() !== "" || owner !== "all" || status !== "all";
+  const onSort = (id) => {
+    if (id === sortId) patch({ sort: id, dir: sortDir === "asc" ? "desc" : "asc" });
+    else patch({ sort: id, dir: DEFAULT_DIR[id] });
+  };
   const clearFilters = () => patch({ q: "", owner: "all", status: "all" });
 
   const handleSave = (values) => {
@@ -113,7 +117,9 @@ export default function Pipeline() {
   };
   const handleDelete = () => { destroy(modal.deal); closeModal(); };
 
-  const { columns, renderCard: renderListCard } = useDealTable({ t, fmt, today, query, resolve, onEdit: openEdit, onDelete: openDelete, onMove: move });\n\n  const renderCard = (deal) => (
+  const { columns, renderCard: renderListCard } = useDealTable({ t, fmt, today, query, resolve, onEdit: openEdit, onDelete: openDelete, onMove: move });
+
+  const renderCard = (deal) => (
     <DealCard
       deal={deal} client={resolve(deal)} owner={getOwner(deal.ownerId)} showOwner showAge
       t={t} fmt={fmt} today={today} query={query} onEdit={openEdit} onDelete={openDelete} onMove={move}
@@ -198,6 +204,15 @@ export default function Pipeline() {
                 <IconButton variant="outline" label={t.toggleDirection} onClick={() => patch({ sort: sortId, dir: sortDir === "asc" ? "desc" : "asc" })}>
                   <Icon name={sortDir === "asc" ? "arrowUp" : "arrowDown"} size={16} />
                 </IconButton>
+                <div role="group" aria-label={t.viewLabel} className={`inline-flex shrink-0 rounded-lg border p-0.5 ${hairline}`}>
+                  {[[ "board", "board", t.viewBoard ], [ "list", "list", t.viewList ]].map(([id, icon, label]) => (
+                    <button key={id} type="button" aria-pressed={view === id} aria-label={label} title={label}
+                      onClick={() => patch({ view: id })}
+                      className={`grid size-8 place-items-center rounded-md transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 ${accent.ring} ${view === id ? accent.soft : `${text.body} ${hoverBg}`}`}>
+                      <Icon name={icon} size={16} />
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
           </section>
@@ -213,10 +228,19 @@ export default function Pipeline() {
               <button type="button" onClick={clearFilters} className={`${button.base} ${button.secondary}`}>{t.clear}</button>
             </div>
           ) : (
-            <div className="space-y-2">
-              <p className={`text-xs ${muted}`}>{t.dragHint}</p>
-              <DealsBoard byStage={byStage} t={t} fmt={fmt} renderCard={renderCard} onMove={move} onAdd={openAdd} showWeighted />
-            </div>
+            view === "board" ? (
+              <div className="space-y-2">
+                <p className={`text-xs ${muted}`}>{t.dragHint}</p>
+                <DealsBoard byStage={byStage} t={t} fmt={fmt} renderCard={renderCard} onMove={move} onAdd={openAdd} showWeighted />
+              </div>
+            ) : (
+              <section className={`${card} overflow-hidden`}>
+                <DataTable columns={columns} rows={rows} rowKey={(deal) => deal.id}
+                  sort={{ id: sortId, dir: sortDir }} onSort={onSort}
+                  renderCard={renderListCard} label={t.tableLabel}
+                  labels={{ sortBy: t.sortBy, toggleDirection: t.toggleDirection }} />
+              </section>
+            )
           )}
         </>
       )}
