@@ -13,9 +13,10 @@ const Placeholder = lazy(() => import("./pages/Dashboard/Placeholder"));
 const LeadPage = lazy(() => import("./pages/Leads/LeadPage"));
 const Leads = lazy(() => import("./pages/Leads/Leads"));
 const Pipeline = lazy(() => import("./pages/Pipeline/Pipeline"));
+const Tasks = lazy(() => import("./pages/Tasks/Tasks"));
 
 /* Real pages go here. Any menu id not listed falls back to <Placeholder />. */
-const PAGES = { customers: Customers };
+const PAGES = { customers: Customers, tasks: Tasks };
 
 // Routes are generated from the same menu data the sidebar uses,
 // so adding a menu item automatically adds its route. (Leads, Deals and Pipeline share data through layouts.)
