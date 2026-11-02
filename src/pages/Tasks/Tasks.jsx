@@ -2,7 +2,6 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import "../../components/ui/motion.css";
 import DataTable from "../../components/ui/DataTable";
 import Icon from "../../components/layout/navbar/Icon";
-import IconButton from "../../components/layout/navbar/IconButton";
 import Pagination from "../../components/ui/Pagination";
 import { LANGS } from "../../components/ui/Sidebar";
 import Toast from "../../components/ui/Toast";
@@ -19,8 +18,6 @@ import { T } from "./tasks.i18n";
 
 const PAGE_SIZES = [8, 15, 25];
 const DEFAULT_DIR = { title: "asc", status: "asc", priority: "desc", dueDate: "asc", assignee: "asc" };
-const SORTS = Object.keys(DEFAULT_DIR);
-const PRIORITY_TONE = { low: "neutral", medium: "blue", high: "amber", urgent: "red" };
 
 function escapeCsv(value) {
   const raw = String(value ?? "");
@@ -29,7 +26,7 @@ function escapeCsv(value) {
 
 export default function Tasks() {
   const { lang } = useUI();
-  const { locale, dir } = LANGS[lang];
+  const { locale } = LANGS[lang];
   const t = T[lang];
   const fmt = useMemo(() => makeFormatters(locale), [locale]);
   const today = useToday();
