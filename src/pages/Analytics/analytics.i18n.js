@@ -1,6 +1,6 @@
 export const T = {
   en: {
-    title: "Analytics", subtitle: "Understand sales performance, customer growth, and team execution.",
+    deals: "Deals", title: "Analytics", subtitle: "Understand sales performance, customer growth, and team execution.",
     pipeline: "Open pipeline", weighted: "Weighted pipeline", wonRevenue: "Won revenue", winRate: "Win rate",
     pipelineHint: (n) => `${n} open opportunities`, weightedHint: "Pipeline adjusted by stage probability",
     wonHint: (w, l) => `${w} won · ${l} lost`, winHint: "Won deals as a share of closed deals",
@@ -19,7 +19,7 @@ export const T = {
     chartStageAlt: "Bar chart of deal counts by stage", chartLeadAlt: "Doughnut chart of lead statuses", chartTaskAlt: "Doughnut chart of task statuses",
   },
   ar: {
-    title: "التحليلات", subtitle: "افهم أداء المبيعات ونمو العملاء وكفاءة تنفيذ المهام.",
+    deals: "الصفقات", title: "التحليلات", subtitle: "افهم أداء المبيعات ونمو العملاء وكفاءة تنفيذ المهام.",
     pipeline: "الصفقات المفتوحة", weighted: "المسار المرجّح", wonRevenue: "إيرادات الصفقات الناجحة", winRate: "معدل الفوز",
     pipelineHint: (n) => `${n} فرصة مفتوحة`, weightedHint: "قيمة المسار بعد احتساب احتمال كل مرحلة",
     wonHint: (w, l) => `${w} ناجحة · ${l} خاسرة`, winHint: "نسبة الصفقات الناجحة من الصفقات المغلقة",
