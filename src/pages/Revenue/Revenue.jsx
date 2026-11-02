@@ -107,8 +107,8 @@ export default function Revenue() {
       <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         <StatCard index={0} icon="revenue" label={t.total} value={report.total} format={fmt.money.format} caption={t.totalHint(fmt.nf.format(report.count))}/>
         <StatCard index={1} icon="calendar" label={t.month} value={report.monthTotal} format={fmt.money.format} caption={t.monthHint(fmt.nf.format(report.monthCount))}/>
-        <StatCard index={2} icon="chart" label={t.year} value={report.yearTotal} format={fmt.money.format} caption={t.yearHint}/>
-        <StatCard index={3} icon="trendingUp" label={t.average} value={report.average} format={fmt.money.format} caption={t.averageHint}/>
+        <StatCard index={2} icon="analytics" label={t.year} value={report.yearTotal} format={fmt.money.format} caption={t.yearHint}/>
+        <StatCard index={3} icon="forecast" label={t.average} value={report.average} format={fmt.money.format} caption={t.averageHint}/>
       </section>
 
       <section className={`${card} anim-fade-up p-4`}>
@@ -117,7 +117,7 @@ export default function Revenue() {
       </section>
 
       <section className={`${card} anim-fade-up p-4`}>
-        <div className="flex items-center justify-between gap-3"><div><h2 className="text-sm font-semibold">{t.topClients}</h2><p className={`mt-1 text-xs ${muted}`}>{t.topClientsHint}</p></div><Icon name="users" size={18} className={muted}/></div>
+        <div className="flex items-center justify-between gap-3"><div><h2 className="text-sm font-semibold">{t.topClients}</h2><p className={`mt-1 text-xs ${muted}`}>{t.topClientsHint}</p></div><Icon name="customers" size={18} className={muted}/></div>
         {report.clients.length ? <div className="mt-4 grid gap-3 sm:grid-cols-2 xl:grid-cols-5">
           {report.clients.map((client, index) => <div key={client.id} className="rounded-xl border border-neutral-200 bg-neutral-50/70 p-3 dark:border-neutral-800 dark:bg-neutral-950/40">
             <div className="flex items-center justify-between gap-2"><span className={`text-xs ${muted}`}>#{index + 1}</span><span className="text-xs tabular-nums text-emerald-600 dark:text-emerald-400">{fmt.nf.format(client.count)}</span></div>
