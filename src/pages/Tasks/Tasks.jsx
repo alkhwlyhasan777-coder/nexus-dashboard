@@ -1,12 +1,11 @@
 import { useCallback, useMemo, useState } from "react";
-import { addDays, toISODate } from "../../lib/dates";
+import { toISODate } from "../../lib/dates";
 import { makeFormatters } from "../../lib/format";
 import { useUI } from "../../context/UIcontext";
-import { accent, button, card, field, muted, text } from "../../components/ui/tokens";
+import { accent, button, card, field, muted } from "../../components/ui/tokens";
 import Badge from "../../components/ui/Badge";
 import Icon from "../../components/layout/navbar/Icon";
 import IconButton from "../../components/layout/navbar/IconButton";
-import Modal from "../../components/ui/Modal";
 import Toast from "../../components/ui/Toast";
 import { getOwner } from "../../lib/team";
 import { isTaskOverdue, TASK_PRIORITIES, TASK_STATUSES } from "./tasks.data";
@@ -90,11 +89,11 @@ export default function Tasks() {
 
       <section className="grid grid-cols-2 gap-3 xl:grid-cols-5">
         {[
-          ["total", t.total, "listTodo", "neutral"],
-          ["todo", t.todo, "circle", "blue"],
-          ["inProgress", t.inProgress, "clock", "amber"],
-          ["completed", t.completed, "check", "emerald"],
-          ["overdue", t.overdue, "alert", "red"],
+          ["total", t.total, "tasks"],
+          ["todo", t.todo, "leads"],
+          ["inProgress", t.inProgress, "forecast"],
+          ["completed", t.completed, "check"],
+          ["overdue", t.overdue, "alert"],
         ].map(([key, label, icon, tone]) => (
           <div key={key} className={`${card} p-4`}>
             <div className="flex items-center justify-between gap-2"><p className={`text-xs ${muted}`}>{label}</p><span className={`grid size-8 place-items-center rounded-lg ${accent.soft}`}><Icon name={icon} size={16}/></span></div>
@@ -119,7 +118,7 @@ export default function Tasks() {
 
       {visibleTasks.length === 0 ? (
         <div className={`${card} flex flex-col items-center gap-3 px-4 py-14 text-center`}>
-          <span className={`grid size-12 place-items-center rounded-full ${accent.soft}`}><Icon name="listTodo" size={22}/></span>
+          <span className={`grid size-12 place-items-center rounded-full ${accent.soft}`}><Icon name="tasks" size={22}/></span>
           <div><p className="font-semibold">{tasks.length ? t.noResults : t.empty}</p><p className={`mt-1 text-sm ${muted}`}>{tasks.length ? t.noResultsHint : t.emptyHint}</p></div>
           {tasks.length ? <button type="button" onClick={clearFilters} className={`${button.base} ${button.secondary}`}>{t.clear}</button> : <button type="button" onClick={openAdd} className={`${button.base} ${button.primary}`}>{t.add}</button>}
         </div>
@@ -137,7 +136,7 @@ export default function Tasks() {
                     {task.description && <p className={`mt-1 line-clamp-2 text-xs ${muted}`}>{task.description}</p>}
                     <div className={`mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs ${muted}`}>
                       <span className="inline-flex items-center gap-1"><Icon name="calendar" size={13}/>{task.dueDate ? fmt.date.format(new Date(`${task.dueDate}T00:00:00`)) : "—"}</span>
-                      <span className="inline-flex items-center gap-1"><Icon name="user" size={13}/>{owner?.name ?? t.noAssignee}</span>
+                      <span className="inline-flex items-center gap-1"><Icon name="customers" size={13}/>{owner?.name ?? t.noAssignee}</span>
                       <span>{t[`st_${task.status}`]}</span>
                     </div>
                   </div>
