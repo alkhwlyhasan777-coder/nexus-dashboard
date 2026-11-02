@@ -11,7 +11,6 @@ import useCustomers from "../Customers/useCustomers";
 import { useDealsCtx } from "../Deals/DealsLayout";
 import { STAGE_COLOR } from "../Deals/deals.data";
 import useLeads from "../Leads/useLeads";
-import { STATUS_TONE } from "../Leads/leads.data";
 import useTasks from "../Tasks/useTasks";
 import { buildAnalytics } from "./analytics.data";
 import { T } from "./analytics.i18n";
