@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { isValidDate } from "../../lib/dates";
 import { OWNERS } from "../../lib/team";
-import { button, field, muted } from "../../components/ui/tokens";
+import { button, field } from "../../components/ui/tokens";
 import { TASK_PRIORITIES, TASK_STATUSES } from "./tasks.data";
 
 export default function TaskForm({ initial, t, onSubmit, onCancel }) {
@@ -64,7 +64,6 @@ export default function TaskForm({ initial, t, onSubmit, onCancel }) {
         <button type="button" onClick={onCancel} className={`${button.base} ${button.secondary}`}>{t.cancel}</button>
         <button type="submit" className={`${button.base} ${button.primary}`}>{initial ? t.save : t.create}</button>
       </div>
-      <p className={`text-xs ${muted}`}> </p>
     </form>
   );
 }
