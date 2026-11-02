@@ -8,7 +8,7 @@ import { isTaskOverdue } from "./tasks.data";
 
 const PRIORITY_TONE = { low: "neutral", medium: "blue", high: "amber", urgent: "red" };
 
-export default function useTaskTable({ t, fmt, query, today, onEdit, onDelete, onToggle }) {
+export default function useTaskTable({ t, fmt, today, onEdit, onDelete, onToggle }) {
   return useMemo(() => {
     const identity = (task) => (
       <div className="flex min-w-0 items-center gap-3">
@@ -62,5 +62,5 @@ export default function useTaskTable({ t, fmt, query, today, onEdit, onDelete, o
       </div>
     );
     return { columns, renderCard };
-  }, [t, fmt, query, today, onEdit, onDelete, onToggle]);
+  }, [t, fmt, today, onEdit, onDelete, onToggle]);
 }
