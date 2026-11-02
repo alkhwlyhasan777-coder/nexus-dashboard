@@ -6,7 +6,7 @@ import Icon from "../../components/layout/navbar/Icon";
 import Pagination from "../../components/ui/Pagination";
 import StatCard from "../../components/ui/StatCard";
 import { LANGS } from "../../components/ui/Sidebar";
-import { accent, button, card, chartColors, field, hairline, muted, text } from "../../components/ui/tokens";
+import { button, card, chartColors, field, hairline, muted, text } from "../../components/ui/tokens";
 import { useUI } from "../../context/UIcontext";
 import useDarkMode from "../../hooks/useDarkMode";
 import { makeFormatters } from "../../lib/format";
@@ -186,7 +186,7 @@ export default function Revenue() {
       </section>
 
       <section className={`${card} anim-fade-up overflow-hidden`}>
-        <div className="flex flex-col gap-3 border-b p-4 sm:px-5 lg:flex-row lg:items-center ${hairline}">
+        <div className={`flex flex-col gap-3 border-b p-4 sm:px-5 lg:flex-row lg:items-center ${hairline}`}>
           <div className="min-w-0 flex-1"><h2 className="text-sm font-semibold">{t.register}</h2><p className={`mt-1 text-xs ${muted}`}>{t.registerHint}</p></div>
           <div className="flex flex-col gap-2 sm:flex-row">
             <div className="relative sm:w-64"><Icon name="search" size={15} className={`pointer-events-none absolute start-3 top-1/2 -translate-y-1/2 ${muted}`}/><input type="search" value={query} onChange={(e) => { setQuery(e.target.value); setPage(1); }} placeholder={t.search} aria-label={t.searchLabel} className={`${field} ps-9`}/></div>
