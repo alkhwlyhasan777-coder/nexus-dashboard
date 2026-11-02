@@ -14,6 +14,7 @@ const LeadPage = lazy(() => import("./pages/Leads/LeadPage"));
 const Leads = lazy(() => import("./pages/Leads/Leads"));
 const Pipeline = lazy(() => import("./pages/Pipeline/Pipeline"));
 const Tasks = lazy(() => import("./pages/Tasks/Tasks"));
+const Analytics = lazy(() => import("./pages/Analytics/Analytics"));
 
 /* Real pages go here. Any menu id not listed falls back to <Placeholder />. */
 const PAGES = { customers: Customers, tasks: Tasks };
@@ -22,7 +23,7 @@ const PAGES = { customers: Customers, tasks: Tasks };
 // so adding a menu item automatically adds its route. (Leads, Deals and Pipeline share data through layouts.)
 const ids = [...MENU.flatMap((g) => g.items), ...FOOTER_MENU]
   .map((i) => i.id)
-  .filter((id) => !["dashboard", "leads", "deals", "pipeline"].includes(id))
+  .filter((id) => !["dashboard", "leads", "deals", "pipeline", "analytics"].includes(id))
   .concat("upgrade", "pages");
 
 function PageFallback() {
@@ -59,6 +60,7 @@ export default function App() {
           <Route element={<DealsLayout />}>
             <Route path="deals" element={<Deals />} />
             <Route path="pipeline" element={<Pipeline />} />
+            <Route path="analytics" element={<Analytics />} />
           </Route>
 
           {ids.map((id) => {
