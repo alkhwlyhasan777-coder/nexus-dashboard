@@ -74,7 +74,7 @@ export default function useTasks({ onExternalChange } = {}) {
   }, [tasks]);
 
   const restore = useCallback(({ task, index }) => dispatch({ type: "restore", task, index }), []);
-  const acknowledge = useCallback(() => setStatus((current) => ({ ...current, dropped: 0 })), []);
+  const acknowledge = useCallback(() => setStatus(OK), []);
 
   return { tasks, status, add, update, remove, restore, acknowledge };
 }
