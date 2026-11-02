@@ -16,7 +16,6 @@ export function buildAnalytics(deals, leads, customers, tasks, now = new Date())
   const winRate = closedDeals.length ? wonDeals.length / closedDeals.length : 0;
   const completedTasks = tasks.filter((task) => task.status === "completed").length;
   const taskCompletion = tasks.length ? completedTasks / tasks.length : 0;
-  const monthStart = new Date(now.getFullYear(), now.getMonth() - 5, 1);
   const months = Array.from({ length: 6 }, (_, index) => {
     const date = new Date(now.getFullYear(), now.getMonth() - 5 + index, 1);
     return { key: `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}`, date, revenue: 0, deals: 0, leads: 0 };
