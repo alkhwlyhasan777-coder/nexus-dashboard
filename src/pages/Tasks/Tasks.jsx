@@ -94,7 +94,7 @@ export default function Tasks() {
           ["inProgress", t.inProgress, "forecast"],
           ["completed", t.completed, "check"],
           ["overdue", t.overdue, "alert"],
-        ].map(([key, label, icon, tone]) => (
+        ].map(([key, label, icon]) => (
           <div key={key} className={`${card} p-4`}>
             <div className="flex items-center justify-between gap-2"><p className={`text-xs ${muted}`}>{label}</p><span className={`grid size-8 place-items-center rounded-lg ${accent.soft}`}><Icon name={icon} size={16}/></span></div>
             <p className="mt-2 text-2xl font-semibold tabular-nums">{fmt.nf.format(counts[key])}</p>
