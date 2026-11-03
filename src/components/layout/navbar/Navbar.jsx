@@ -100,6 +100,10 @@ export default function Navbar({
                   </button>
                 )}
               >
+                <div className="space-y-1 p-1">
+                  <a href="/settings/security" className="block rounded-lg px-3 py-2 text-sm transition hover:bg-neutral-100 dark:hover:bg-neutral-800">{lang === "ar" ? "إعدادات الأمان" : "Security settings"}</a>
+                  <button type="button" onClick={onSignOut} className="w-full rounded-lg px-3 py-2 text-start text-sm font-medium text-red-600 transition hover:bg-red-50 dark:text-red-400 dark:hover:bg-red-500/10">{lang === "ar" ? "تسجيل الخروج" : "Sign out"}</button>
+                </div>
               </Dropdown>
             )}
           </div>
