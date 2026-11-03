@@ -203,7 +203,7 @@ export default function Dashboard() {
           return <Link key={id} to={path} className="group flex min-w-0 items-center gap-3 rounded-xl border border-neutral-200 p-3 transition hover:border-blue-300 hover:bg-blue-50/50 dark:border-neutral-800 dark:hover:border-blue-500/40 dark:hover:bg-blue-500/5">
             <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-neutral-100 text-neutral-600 transition group-hover:bg-blue-100 group-hover:text-blue-700 dark:bg-neutral-800 dark:text-neutral-300 dark:group-hover:bg-blue-500/15 dark:group-hover:text-blue-300"><Icon name={icon} size={18}/></span>
             <span className="min-w-0 flex-1"><span className="block truncate text-sm font-semibold">{title}</span><span className={`mt-0.5 block text-[11px] leading-5 ${muted}`}>{description}</span></span>
-            <Icon name={rtl ? "arrow-left" : "arrow-right"} size={15} className={`shrink-0 text-neutral-400 transition group-hover:text-blue-600 ${rtl ? "group-hover:-translate-x-0.5" : "group-hover:translate-x-0.5"}`}/>
+            <Icon name={rtl ? "chevronLeft" : "chevron"} size={15} className={`shrink-0 text-neutral-400 transition group-hover:text-blue-600 ${rtl ? "group-hover:-translate-x-0.5" : "group-hover:translate-x-0.5"}`}/>
           </Link>;
         })}
       </div>
