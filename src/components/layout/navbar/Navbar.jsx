@@ -6,13 +6,14 @@ import { accent, canvas, card, focusRing, hairline, hoverBg, muted } from "../..
 import Avatar from "../../layout/navbar/Avatar";
 import Dropdown from "./Dropdown";
 import SearchBox from "../../layout/navbar/SearchBox";
+import NotificationCenter from "./NotificationCenter";
 // import { DesktopNav, MobileNav, SubLink } from "../../layout/navbar/NavMenu";
 import { NAV_BREAKPOINTS, NAV_TEXT, USER_MENU } from "./navbar.config";
 export default function Navbar({
   lang = "en", onToggleLang, theme = "light", onToggleTheme,
   collapsed = false, onCollapse, onOpenSidebar,
   user = USER_MENU, text = NAV_TEXT, breakpoints = NAV_BREAKPOINTS,
-  hasUnread = false, onNotifications, onCreate, onSearch, onSignOut,
+  onCreate, onSearch, onSignOut,
 }) {
   const t = text[lang];
   const [ref, width] = useElementWidth();
@@ -74,13 +75,7 @@ export default function Navbar({
               <Icon name="globe" size={19} />
             </IconButton>
  
-            <IconButton
-              label={hasUnread ? `${t.notifications} (${t.unread})` : t.notifications}
-              badge={hasUnread}
-              onClick={onNotifications}
-            >
-              <Icon name="bell" size={18} />
-            </IconButton>
+            <NotificationCenter />
  
             {user && (
               <Dropdown
