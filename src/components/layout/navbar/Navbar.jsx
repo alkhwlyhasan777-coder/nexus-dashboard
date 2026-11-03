@@ -13,7 +13,7 @@ export default function Navbar({
   lang = "en", onToggleLang,
   collapsed = false, onCollapse, onOpenSidebar,
   user = USER_MENU, text = NAV_TEXT, breakpoints = NAV_BREAKPOINTS,
-  hasUnread = false, onNotifications, onCreate, onSearch,
+  hasUnread = false, onNotifications, onCreate, onSearch, onSignOut,
 }) {
   const t = text[lang];
   const [ref, width] = useElementWidth();
