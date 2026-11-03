@@ -5,7 +5,6 @@ import IconButton from "../../layout/navbar/IconButton";
 import { accent, canvas, card, focusRing, hairline, hoverBg, muted } from "../../ui/tokens";
 import Avatar from "../../layout/navbar/Avatar";
 import Dropdown from "./Dropdown";
-import Flag from "../../layout/navbar/Flag";
 import SearchBox from "../../layout/navbar/SearchBox";
 // import { DesktopNav, MobileNav, SubLink } from "../../layout/navbar/NavMenu";
 import { NAV_BREAKPOINTS, NAV_TEXT, USER_MENU } from "./navbar.config";
@@ -72,7 +71,7 @@ export default function Navbar({
             </IconButton>
 
             <IconButton label={t.switchLang} onClick={onToggleLang}>
-              <Flag lang={lang} />
+              <Icon name="globe" size={19} />
             </IconButton>
  
             <IconButton
