@@ -66,8 +66,10 @@ export default function NotificationCenter() {
   };
 
   return (
-    <Dropdown align="end" className="w-96 max-w-[calc(100vw-2rem)]">
-      {({ toggle, props }) => (
+    <Dropdown
+      align="end"
+      className="w-96 max-w-[calc(100vw-2rem)]"
+      trigger={({ toggle, props }) => (
         <IconButton {...props} label={unreadCount ? `${labels.title} (${unreadCount})` : labels.title} badge={unreadCount > 0} onClick={toggle}>
           <Icon name="bell" size={18} />
         </IconButton>
