@@ -10,7 +10,7 @@ import SearchBox from "../../layout/navbar/SearchBox";
 // import { DesktopNav, MobileNav, SubLink } from "../../layout/navbar/NavMenu";
 import { NAV_BREAKPOINTS, NAV_TEXT, USER_MENU } from "./navbar.config";
 export default function Navbar({
-  lang = "en", onToggleLang,
+  lang = "en", onToggleLang, theme = "light", onToggleTheme,
   collapsed = false, onCollapse, onOpenSidebar,
   user = USER_MENU, text = NAV_TEXT, breakpoints = NAV_BREAKPOINTS,
   hasUnread = false, onNotifications, onCreate, onSearch, onSignOut,
@@ -67,6 +67,10 @@ export default function Navbar({
               {showCreateLabel && <span>{t.create}</span>}
             </button>
  
+            <IconButton label={lang === "ar" ? (theme === "dark" ? "تفعيل الوضع الفاتح" : "تفعيل الوضع الداكن") : (theme === "dark" ? "Switch to light mode" : "Switch to dark mode")} onClick={onToggleTheme}>
+              <Icon name={theme === "dark" ? "sun" : "moon"} size={18} />
+            </IconButton>
+
             <IconButton label={t.switchLang} onClick={onToggleLang}>
               <Flag lang={lang} />
             </IconButton>
