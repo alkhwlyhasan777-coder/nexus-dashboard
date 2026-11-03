@@ -117,3 +117,61 @@ Front-End Developer
 If you find this project useful, feel free to explore the repository and share your feedback.
 
 **Built with React, Tailwind CSS, and passion for Front-End Development.**
+
+## 🔐 Authentication setup (Supabase)
+
+Nexus Dashboard uses Supabase Auth for email/password registration, email confirmation, sign-in, password recovery, password updates, and sign-out.
+
+### 1. Install dependencies
+
+```bash
+npm install
+```
+
+This installs the Supabase JavaScript client and refreshes `package-lock.json`.
+
+### 2. Create a Supabase project
+
+Create a project at [Supabase](https://supabase.com/dashboard), then open **Project Settings → API** (or the project's Connect panel) and copy the Project URL and Publishable key.
+
+### 3. Configure local environment
+
+Copy `.env.example` to `.env.local` and fill in:
+
+```env
+VITE_SUPABASE_URL=https://your-project-ref.supabase.co
+VITE_SUPABASE_PUBLISHABLE_KEY=your-supabase-publishable-key
+```
+
+The publishable key is intended for browser use. Never put a Supabase secret/service-role key in a Vite environment variable or commit it to Git.
+
+### 4. Configure Auth URLs
+
+In **Authentication → URL Configuration**, set the Site URL to your deployed app URL and add these Redirect URLs:
+
+- `http://localhost:5173/**`
+- `https://nexus-dashboard-five-rho.vercel.app/**`
+
+If you use another production domain or Vercel preview domain, add its exact URL/pattern too.
+
+### 5. Enable email/password and confirmation
+
+In **Authentication → Sign In / Providers → Email**, enable email/password sign-up and keep email confirmation enabled. Configure a custom SMTP provider before production use; Supabase's default email service is rate-limited and intended for trying the flow.
+
+### 6. Run locally
+
+```bash
+npm run dev
+npm run lint
+npm run build
+```
+
+### Auth routes
+
+- `/signup` — create an account and request email confirmation.
+- `/login` — sign in with email and password.
+- `/forgot-password` — send a password recovery email.
+- `/reset-password` — set a new password from the recovery link.
+- `/settings/security` — change the password while signed in.
+
+Private dashboard routes are wrapped by the Supabase session guard. Authentication does not automatically isolate existing localStorage demo data between different users; user-specific data persistence and database Row Level Security must be implemented before treating this as a multi-tenant production SaaS.
