@@ -14,6 +14,7 @@ export const T = {
     recentLeads: "Recent leads", recentLeadsHint: "The latest leads added to your workspace.", noLeads: "No leads yet.",
     quickAccess: "Workspace", quickHint: "Jump to any part of your CRM workspace.",
     viewAll: "View all", viewDetails: "Open section", noDeals: "No deal data yet", noRevenue: "No closed revenue yet",
+    leadStatuses: { new: "New", contacted: "Contacted", qualified: "Qualified", proposal: "Proposal", won: "Won", lost: "Lost" },
     stages: { prospecting: "Prospecting", qualification: "Qualification", proposal: "Proposal", negotiation: "Negotiation" },
     modules: {
       leads: ["Leads", "Capture and qualify new opportunities."], deals: ["Deals", "Manage active opportunities and outcomes."],
@@ -39,6 +40,7 @@ export const T = {
     recentLeads: "أحدث العملاء المحتملين", recentLeadsHint: "آخر العملاء المحتملين الذين تمت إضافتهم إلى مساحة العمل.", noLeads: "لا يوجد عملاء محتملون بعد.",
     quickAccess: "مساحة العمل", quickHint: "انتقل مباشرة إلى أي قسم من أقسام إدارة العملاء.",
     viewAll: "عرض الكل", viewDetails: "فتح القسم", noDeals: "لا توجد بيانات صفقات بعد", noRevenue: "لا توجد إيرادات محققة بعد",
+    leadStatuses: { new: "جديد", contacted: "تم التواصل", qualified: "مؤهل", proposal: "عرض مقدم", won: "ناجح", lost: "خاسر" },
     stages: { prospecting: "استكشاف", qualification: "تأهيل", proposal: "عرض", negotiation: "تفاوض" },
     modules: {
       leads: ["العملاء المحتملون", "إضافة العملاء المحتملين وتأهيل الفرص."], deals: ["الصفقات", "إدارة الفرص النشطة والصفقات المنجزة."],
