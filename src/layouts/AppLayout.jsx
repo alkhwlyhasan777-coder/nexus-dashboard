@@ -9,7 +9,7 @@ export const pathFor = (id) => (id === "dashboard" ? "/" : `/${id}`);
 const SKIP = { en: "Skip to content", ar: "تخطَّ إلى المحتوى" };
 
 export default function AppLayout() {
-  const { lang, toggleLang, collapsed, toggleCollapsed, mobileOpen, openMobile, closeMobile } = useUI();
+  const { lang, toggleLang, theme, toggleTheme, collapsed, toggleCollapsed, mobileOpen, openMobile, closeMobile } = useUI();
   const { user, signOut } = useAuth();
   const { pathname } = useLocation();
   const navigate = useNavigate();
@@ -27,7 +27,7 @@ export default function AppLayout() {
       <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:start-3 focus:top-3 focus:z-50 focus:rounded-lg focus:bg-white focus:px-3 focus:py-2 focus:text-sm focus:font-medium focus:shadow-lg dark:focus:bg-neutral-900">{SKIP[lang]}</a>
       <Sidebar lang={lang} activeId={activeId} onSelect={(id) => navigate(pathFor(id))} collapsed={collapsed} onToggleCollapse={toggleCollapsed} isOpen={mobileOpen} onClose={closeMobile} />
       <div className={mainOffset(collapsed)}>
-        <Navbar lang={lang} onToggleLang={toggleLang} collapsed={collapsed} onCollapse={toggleCollapsed} onOpenSidebar={openMobile} user={{ name: displayName, role: user?.email || "Member" }} hasUnread onCreate={() => navigate("/deals?new=1")} onSignOut={handleSignOut} />
+        <Navbar lang={lang} onToggleLang={toggleLang} theme={theme} onToggleTheme={toggleTheme} collapsed={collapsed} onCollapse={toggleCollapsed} onOpenSidebar={openMobile} user={{ name: displayName, role: user?.email || "Member" }} hasUnread onCreate={() => navigate("/deals?new=1")} onSignOut={handleSignOut} />
         <main id="main" tabIndex={-1} className="px-3 pb-6 pt-1 outline-none md:px-6"><Outlet /></main>
       </div>
     </div>
