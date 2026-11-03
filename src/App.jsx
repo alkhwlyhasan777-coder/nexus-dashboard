@@ -22,9 +22,10 @@ const Pipeline = lazy(() => import("./pages/Pipeline/Pipeline"));
 const Tasks = lazy(() => import("./pages/Tasks/Tasks"));
 const Analytics = lazy(() => import("./pages/Analytics/Analytics"));
 const Revenue = lazy(() => import("./pages/Revenue/Revenue"));
+const Automation = lazy(() => import("./pages/Automation/Automation"));
 const Reports = lazy(() => import("./pages/Reports/Reports"));
 
-const PAGES = { customers: Customers, tasks: Tasks, revenue: Revenue };
+const PAGES = { customers: Customers, tasks: Tasks, revenue: Revenue, automation: Automation };
 const ids = [...MENU.flatMap((g) => g.items), ...FOOTER_MENU]
   .map((item) => item.id)
   .filter((id) => !["dashboard", "leads", "deals", "pipeline", "analytics", "revenue", "reports", "forecast"].includes(id))
