@@ -66,14 +66,14 @@ export default function NotificationCenter() {
   };
 
   return (
-    <Dropdown align="end" className="w-[min( min( calc(100vw-2rem), 24rem), 24rem)]">
+    <Dropdown align="end" className="w-96 max-w-[calc(100vw-2rem)]">
       {({ toggle, props }) => (
         <IconButton {...props} label={unreadCount ? `${labels.title} (${unreadCount})` : labels.title} badge={unreadCount > 0} onClick={toggle}>
           <Icon name="bell" size={18} />
         </IconButton>
       )}
     >
-      <section className="w-[min( calc(100vw-2rem), 24rem)] overflow-hidden">
+      <section className="w-96 max-w-[calc(100vw-2rem)] overflow-hidden">
         <header className="flex items-center justify-between border-b border-neutral-200 px-4 py-3 dark:border-neutral-800">
           <div>
             <h3 className="text-sm font-semibold">{labels.title}</h3>
